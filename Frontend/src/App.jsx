@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Essentials from "./pages/Essentials";
 import Collection from "./pages/Collection";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <About />
       <Essentials />
       <Collection />
+      <Footer />
     </>
   );
 };
