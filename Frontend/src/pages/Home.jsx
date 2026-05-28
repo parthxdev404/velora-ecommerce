@@ -62,8 +62,6 @@ const Home = () => {
           </h1>
         </section>
       </div>
-
-      <BrandList />
     </>
   );
 };
