@@ -52,7 +52,7 @@ const Collection = () => {
             alt=""
           />
           <h1 className="absolute bottom-4 left-4 font-semibold text-2xl sm:text-4xl lg:text-5xl text-white">
-            SNEARKS
+            SNEAKERS
           </h1>
         </div>
       </main>
