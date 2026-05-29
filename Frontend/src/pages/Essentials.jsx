@@ -2,8 +2,11 @@ import React from "react";
 import Essential1 from "../assets/Essesntial1.png";
 import Essential2 from "../assets/Essesntial2.png";
 import Essential3 from "../assets/Essesntial3.png";
+import { useNavigate } from "react-router-dom";
 
 const Essentials = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="flex flex-col p-4 sm:p-6 lg:p-8 mt-10">
@@ -12,7 +15,10 @@ const Essentials = () => {
         </h1>
 
         <main className="flex flex-col lg:flex-row items-center justify-center gap-4">
-          <div className="w-full lg:w-auto h-96 sm:h-120 lg:h-140 relative overflow-hidden cursor-pointer group">
+          <div
+            onClick={() => navigate("/clothing")}
+            className="w-full lg:w-auto h-96 sm:h-120 lg:h-140 relative overflow-hidden cursor-pointer group"
+          >
             <img
               className="w-full h-full object-cover group-hover:scale-105 transition-all"
               src={Essential1}
@@ -22,8 +28,10 @@ const Essentials = () => {
               EVERYDAY FITS
             </h1>
           </div>
-
-          <div className="w-full lg:w-auto h-96 sm:h-120 lg:h-140 relative overflow-hidden cursor-pointer group">
+          <div
+            onClick={() => navigate("/sounds")}
+            className="w-full lg:w-auto h-96 sm:h-120 lg:h-140 relative overflow-hidden cursor-pointer group"
+          >
             <img
               className="w-full h-full object-cover group-hover:scale-105 transition-all"
               src={Essential2}
@@ -33,8 +41,10 @@ const Essentials = () => {
               HEAR BETTER
             </h1>
           </div>
-
-          <div className="w-full lg:w-auto h-96 sm:h-120 lg:h-140 relative overflow-hidden cursor-pointer group">
+          <div
+            onClick={() => navigate("/accessories")}
+            className="w-full lg:w-auto h-96 sm:h-120 lg:h-140 relative overflow-hidden cursor-pointer group"
+          >
             <img
               className="w-full h-full object-cover group-hover:scale-105 transition-all"
               src={Essential3}

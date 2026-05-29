@@ -3,8 +3,11 @@ import banner1 from "../assets/Banner1.png";
 import banner2 from "../assets/Banner2.png";
 import banner3 from "../assets/Banner3.png";
 import banner4 from "../assets/Banner4.png";
+import { useNavigate } from "react-router-dom";
 
 const Collection = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center flex-col justify-center p-4 sm:p-6 lg:p-10 overflow-hidden">
       <h1 className="text-black text-4xl sm:text-5xl lg:text-7xl font-semibold text-center mt-10 p-4">
@@ -12,7 +15,10 @@ const Collection = () => {
       </h1>
 
       <main className="w-full p-0 sm:p-4 lg:p-8 relative space-y-4">
-        <div className="overflow-hidden h-44 sm:h-52 transition-all relative hover:h-60 sm:hover:h-72">
+        <div
+          onClick={() => navigate("/clothing")}
+          className="overflow-hidden h-44 sm:h-52 transition-all relative hover:h-60 sm:hover:h-72"
+        >
           <img
             className="object-cover w-full h-full cursor-pointer"
             src={banner1}
@@ -23,7 +29,10 @@ const Collection = () => {
           </h1>
         </div>
 
-        <div className="overflow-hidden h-44 sm:h-52 transition-all relative hover:h-60 sm:hover:h-72">
+        <div
+          onClick={() => navigate("/sounds")}
+          className="overflow-hidden h-44 sm:h-52 transition-all relative hover:h-60 sm:hover:h-72"
+        >
           <img
             className="object-cover w-full h-full cursor-pointer"
             src={banner2}
@@ -34,7 +43,10 @@ const Collection = () => {
           </h1>
         </div>
 
-        <div className="overflow-hidden h-44 sm:h-52 transition-all relative hover:h-60 sm:hover:h-72">
+        <div
+          onClick={() => navigate("/accessories")}
+          className="overflow-hidden h-44 sm:h-52 transition-all relative hover:h-60 sm:hover:h-72"
+        >
           <img
             className="object-cover w-full h-full cursor-pointer"
             src={banner3}
@@ -45,7 +57,10 @@ const Collection = () => {
           </h1>
         </div>
 
-        <div className="overflow-hidden h-44 sm:h-52 transition-all relative hover:h-60 sm:hover:h-72">
+        <div
+          onClick={() => navigate("/sneakers")}
+          className="overflow-hidden h-44 sm:h-52 transition-all relative hover:h-60 sm:hover:h-72"
+        >
           <img
             className="object-cover w-full h-full cursor-pointer"
             src={banner4}

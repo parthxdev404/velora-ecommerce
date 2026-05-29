@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -18,12 +19,40 @@ const Footer = () => {
             <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-300">
               Categories
             </h2>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li className="hover:text-white cursor-pointer">Men</li>
-              <li className="hover:text-white cursor-pointer">Women</li>
-              <li className="hover:text-white cursor-pointer">Kids Wear</li>
-              <li className="hover:text-white cursor-pointer">Sneakers</li>
-              <li className="hover:text-white cursor-pointer">Accessories</li>
+            <ul className="space-y-2 text-sm text-gray-400 flex flex-col">
+              <Link
+                to="/clothing/men"
+                className="hover:text-white cursor-pointer"
+              >
+                Men
+              </Link>
+              <Link
+                to="/clothing/women"
+                className="hover:text-white cursor-pointer"
+              >
+                Women
+              </Link>
+              <Link
+                to="/clothing/boys"
+                className="hover:text-white cursor-pointer"
+              >
+                Boys
+              </Link>
+              <Link
+                to="/clothing/girls"
+                className="hover:text-white cursor-pointer"
+              >
+                Girls
+              </Link>
+              <Link to="/sneakers" className="hover:text-white cursor-pointer">
+                Sneakers
+              </Link>
+              <Link
+                to="/accessories"
+                className="hover:text-white cursor-pointer"
+              >
+                Accessories
+              </Link>
             </ul>
           </div>
 

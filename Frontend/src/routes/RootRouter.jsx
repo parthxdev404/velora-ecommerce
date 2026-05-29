@@ -7,6 +7,12 @@ import Essentials from "../pages/Essentials";
 import Collection from "../pages/Collection";
 import Footer from "../components/Footer";
 import SignUp from "../pages/SignUp";
+import Clothing from "../pages/Clothing";
+import Accessories from "../pages/Accessories";
+import Sneakers from "../pages/Sneakers";
+import Sounds from "../pages/Sounds";
+import SectionPage from "../pages/SectionPage";
+import ProductPage from "../pages/ProductPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 const RootRouter = () => {
@@ -22,7 +28,7 @@ const RootRouter = () => {
           />
           <Route
             path="/register"
-            element={isLoggedIn ? (to = "/") : <SignUp />}
+            element={isLoggedIn ? <Navigate to="/" /> : <SignUp />}
           />
           <Route
             path="/"
@@ -38,10 +44,12 @@ const RootRouter = () => {
               </>
             }
           />
-          <Route path="/clothing" />
-          <Route path="/sounds" />
-          <Route path="/accessories" />
-          <Route path="/sneakers" />
+          <Route path="/clothing" element={<Clothing />} />
+          <Route path="/clothing/:section" element={<SectionPage />} />
+          <Route path="/sounds" element={<Sounds />} />
+          <Route path="/accessories" element={<Accessories />} />
+          <Route path="/sneakers" element={<Sneakers />} />
+          <Route path="/product/:category/:id" element={<ProductPage />} />
         </Routes>
       </BrowserRouter>
     </>
