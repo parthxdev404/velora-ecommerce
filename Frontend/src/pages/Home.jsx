@@ -46,7 +46,7 @@ const Home = () => {
 
           <Link
             className="inline-block text-sm sm:text-lg md:text-xl font-medium bg-white text-black py-3 px-6 sm:px-10 cursor-pointer mt-8 hover:scale-105 transition-all duration-300"
-            to="/shop"
+            to="/clothing"
           >
             SHOP NOW
           </Link>
