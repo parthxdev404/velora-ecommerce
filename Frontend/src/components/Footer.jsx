@@ -44,15 +44,6 @@ const Footer = () => {
               >
                 Girls
               </Link>
-              <Link to="/sneakers" className="hover:text-white cursor-pointer">
-                Sneakers
-              </Link>
-              <Link
-                to="/accessories"
-                className="hover:text-white cursor-pointer"
-              >
-                Accessories
-              </Link>
             </ul>
           </div>
 
