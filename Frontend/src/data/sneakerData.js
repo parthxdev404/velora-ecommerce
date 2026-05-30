@@ -1,6 +1,6 @@
 const sneakerData = [
   {
-    id: 1,
+    id: 11,
     name: "Nike Air Force 1 White",
     description:
       "Classic all-white leather sneaker with a chunky sole, clean streetwear look, everyday casual wear.",
@@ -9,7 +9,7 @@ const sneakerData = [
     price: "7000",
   },
   {
-    id: 2,
+    id: 82,
     name: "Nike Air Force 1 White",
     description:
       "Minimal white leather sneaker with Nike swoosh, premium casual styling.",
@@ -18,7 +18,7 @@ const sneakerData = [
     price: "8599",
   },
   {
-    id: 3,
+    id: 83,
     name: "Nike Free Neon Green",
     description:
       "Lightweight performance sneaker with breathable mesh and sporty design for training/running.",
@@ -27,7 +27,7 @@ const sneakerData = [
     price: "9599",
   },
   {
-    id: 4,
+    id: 84,
     name: "Nike Training Sneaker",
     description:
       "Athletic shoe with durable grip and support, made for gym or workouts.",
@@ -36,7 +36,7 @@ const sneakerData = [
     price: "5999",
   },
   {
-    id: 5,
+    id: 85,
     name: "Nike Running Shoe",
     description:
       "Cushioned running sneaker with mesh upper and sporty silhouette.",
@@ -45,7 +45,7 @@ const sneakerData = [
     price: "9999",
   },
   {
-    id: 6,
+    id: 86,
     name: "Air Jordan 4 Black & Red",
     description:
       "Cushioned running sneaker with mesh upper and sporty silhouette.",
@@ -54,7 +54,7 @@ const sneakerData = [
     price: "12999",
   },
   {
-    id: 7,
+    id: 87,
     name: "Adidas Counter Sneaker ",
     description:
       "Retro tennis-style sneaker with clean leather finish and blue stripes.",
@@ -63,7 +63,7 @@ const sneakerData = [
     price: "10999",
   },
   {
-    id: 8,
+    id: 88,
     name: "Adidas Performance Sneaker",
     description: "Sporty casual sneaker focused on comfort and movement.",
     image:
@@ -71,7 +71,7 @@ const sneakerData = [
     price: "8999",
   },
   {
-    id: 9,
+    id: 89,
     name: "Adidas Campus Gazelle Style",
     description:
       "Suede low-top sneaker with iconic three stripes, vintage aesthetic.",
@@ -80,7 +80,7 @@ const sneakerData = [
     price: "",
   },
   {
-    id: 10,
+    id: 90,
     name: "Puma Suede",
     description:
       "Classic suede sneaker with low profile and timeless casual styling.",
@@ -89,7 +89,7 @@ const sneakerData = [
     price: "10999",
   },
   {
-    id: 11,
+    id: 91,
     name: "Vans Old Skool Maroon",
     description:
       "Skate-inspired sneaker with durable canvas upper and iconic low-top design.",
@@ -98,7 +98,7 @@ const sneakerData = [
     price: "6499",
   },
   {
-    id: 12,
+    id: 92,
     name: "Vans Old Skool Black",
     description:
       "Classic black skate sneaker with signature side stripe and comfortable sole.",
@@ -107,7 +107,7 @@ const sneakerData = [
     price: "6999",
   },
   {
-    id: 13,
+    id: 93,
     name: "Flex Knit Sock Sneaker",
     description:
       "Lightweight sock-fit sneaker with breathable material for all-day comfort.",
@@ -116,7 +116,7 @@ const sneakerData = [
     price: "5499",
   },
   {
-    id: 14,
+    id: 94,
     name: "Puma White Leather Sneaker",
     description:
       "Minimal white leather sneaker with clean detailing and premium finish.",
@@ -125,7 +125,7 @@ const sneakerData = [
     price: "7999",
   },
   {
-    id: 15,
+    id: 95,
     name: "Reebok Classic Leather Beige",
     description:
       "Retro-inspired casual sneaker with soft neutral tones and everyday comfort.",
@@ -134,7 +134,7 @@ const sneakerData = [
     price: "7499",
   },
   {
-    id: 16,
+    id: 96,
     name: "Puma RS Chunky Sneaker",
     description:
       "Bold chunky sneaker with sporty cushioning and modern streetwear appeal.",
@@ -143,7 +143,7 @@ const sneakerData = [
     price: "9499",
   },
   {
-    id: 17,
+    id: 97,
     name: "Athletic Slip-On Runner",
     description:
       "Comfort-focused lightweight running sneaker with breathable material.",
@@ -152,7 +152,7 @@ const sneakerData = [
     price: "5899",
   },
   {
-    id: 18,
+    id: 98,
     name: "Knit Performance Sneaker",
     description:
       "Breathable knit sneaker designed for flexibility, comfort, and active wear.",
@@ -161,7 +161,7 @@ const sneakerData = [
     price: "8299",
   },
   {
-    id: 19,
+    id: 99,
     name: "Puma RS-X White Red",
     description:
       "Chunky retro-inspired sneaker with bold red accents and cushioned sole.",
@@ -170,7 +170,7 @@ const sneakerData = [
     price: "9999",
   },
   {
-    id: 20,
+    id: 100,
     name: "Puma Court Black",
     description:
       "Classic black low-top sneaker with smooth leather finish and casual style.",
@@ -179,7 +179,7 @@ const sneakerData = [
     price: "8699",
   },
   {
-    id: 21,
+    id: 101,
     name: "Adidas Gazelle Mint Pink",
     description:
       "Retro-inspired suede sneaker with gum sole and soft pastel colorway.",
@@ -188,7 +188,7 @@ const sneakerData = [
     price: "8999",
   },
   {
-    id: 22,
+    id: 102,
     name: "Adidas Retro Blue Orange",
     description:
       "Sporty retro sneaker with iconic three-stripe design and bold contrast colors.",
@@ -197,7 +197,7 @@ const sneakerData = [
     price: "7999",
   },
   {
-    id: 23,
+    id: 103,
     name: "Adidas Performance Sneaker",
     description:
       "Sporty casual sneaker built for movement, comfort, and everyday wear.",
@@ -206,7 +206,7 @@ const sneakerData = [
     price: "8799",
   },
   {
-    id: 24,
+    id: 104,
     name: "Adidas Gazelle White Pink",
     description:
       "Minimal low-top sneaker with soft pink accents and timeless casual appeal.",
@@ -215,7 +215,7 @@ const sneakerData = [
     price: "8499",
   },
   {
-    id: 25,
+    id: 105,
     name: "Adidas Superstar Red",
     description:
       "Bold suede sneaker with signature three stripes and premium streetwear vibe.",
