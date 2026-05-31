@@ -14,6 +14,7 @@ import Sounds from "../pages/Sounds";
 import SectionPage from "../pages/SectionPage";
 import ProductPage from "../pages/ProductPage";
 import ProtectedRoutes from "./ProtectedRoutes";
+import CartPage from "../pages/CartPage";
 
 const RootRouter = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -50,6 +51,7 @@ const RootRouter = () => {
           <Route path="/accessories" element={<Accessories />} />
           <Route path="/sneakers" element={<Sneakers />} />
           <Route path="/product/:category/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </BrowserRouter>
     </>

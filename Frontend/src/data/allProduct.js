@@ -7,7 +7,7 @@ const allProducts = {
   clothing: ClothingData,
   sneakers: sneakerData,
   sounds: soundData,
-  accessory: accessoryData,
+  accessories: accessoryData,
 };
 
 export default allProducts;

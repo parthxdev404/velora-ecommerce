@@ -3,9 +3,11 @@ import React from "react";
 import allProducts from "../data/allProduct";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
+import { useCart } from "../context/CartContext";
 
 const ProductPage = () => {
   const { category, id } = useParams();
+  const { addToCart } = useCart();
   const products = allProducts[category];
 
   const allCategoryProducts = Array.isArray(products)
@@ -74,7 +76,10 @@ const ProductPage = () => {
             )}
 
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
-              <button className="px-6 py-3 bg-black cursor-pointer text-white">
+              <button
+                onClick={() => addToCart(product)}
+                className="px-6 py-3 bg-black cursor-pointer text-white"
+              >
                 Add To Cart
               </button>
 

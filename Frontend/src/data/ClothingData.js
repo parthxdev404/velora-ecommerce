@@ -185,7 +185,8 @@ export const clothingData = {
     {
       id: 21,
       name: "Classic Indigo Overshirt",
-      description: "",
+      description:
+        "Lightweight indigo overshirt with a clean and timeless casual look.",
       image:
         "https://images.unsplash.com/photo-1740711152088-88a009e877bb?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1200",
@@ -193,7 +194,8 @@ export const clothingData = {
     {
       id: 22,
       name: "Linen Breeze Shirt",
-      description: "",
+      description:
+        "Breathable linen shirt designed for effortless all-day comfort.",
       image:
         "https://images.unsplash.com/photo-1713881842156-3d9ef36418cc?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1099",
@@ -201,7 +203,7 @@ export const clothingData = {
     {
       id: 23,
       name: "Midnight Street Tee",
-      description: "",
+      description: "Relaxed graphic tee inspired by modern streetwear culture.",
       image:
         "https://images.unsplash.com/photo-1651383739381-7ce973f5d2f3?q=80&w=675&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1299",
@@ -209,15 +211,16 @@ export const clothingData = {
     {
       id: 24,
       name: "Urban Motion Tee",
-      description: "",
+      description: "Trendy oversized t-shirt built for bold urban style.",
       image:
         "https://plus.unsplash.com/premium_photo-1710400958439-bc50a19bfe55?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      price: "11999",
+      price: "1999",
     },
     {
       id: 25,
       name: "Olive Cargo Flex",
-      description: "",
+      description:
+        "Comfortable cargo pants with a functional and contemporary design.",
       image:
         "https://plus.unsplash.com/premium_photo-1710064056648-97b640e11777?q=80&w=785&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1599",
@@ -225,7 +228,7 @@ export const clothingData = {
     {
       id: 26,
       name: "Ice Blue Relaxed Fit",
-      description: "",
+      description: "Easygoing relaxed-fit outfit perfect for everyday wear.",
       image:
         "https://plus.unsplash.com/premium_photo-1669703777657-41f5adb14e9b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1199",
@@ -233,7 +236,8 @@ export const clothingData = {
     {
       id: 27,
       name: "Desert Casual Shirt",
-      description: "",
+      description:
+        "Casual shirt with a laid-back aesthetic and versatile styling.",
       image:
         "https://plus.unsplash.com/premium_photo-1738692725686-50a275d81090?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1599",
@@ -241,7 +245,8 @@ export const clothingData = {
     {
       id: 28,
       name: "Essential White Tee",
-      description: "",
+      description:
+        "Minimalist white t-shirt that pairs effortlessly with any outfit.",
       image:
         "https://plus.unsplash.com/premium_photo-1727942419945-1908baae3c8e?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1299",
@@ -249,7 +254,8 @@ export const clothingData = {
     {
       id: 29,
       name: "Midnight Tank Top",
-      description: "",
+      description:
+        "Lightweight sleeveless tank designed for comfort and movement.",
       image:
         "https://plus.unsplash.com/premium_photo-1766341850889-d359cb99703c?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "700",
@@ -257,87 +263,89 @@ export const clothingData = {
     {
       id: 30,
       name: "Sky Formal Shirt",
-      description: "",
+      description:
+        "Crisp formal shirt offering a polished and professional appearance.",
       image:
         "https://images.unsplash.com/photo-1732605559386-bc59426d1b16?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 31,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Coastal Check Shirt",
+      description: "Classic plaid shirt with a relaxed coastal-inspired look.",
       image:
         "https://images.unsplash.com/photo-1582851758630-35282b9610e2?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 32,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Ivory Overshirt Jacket",
+      description:
+        "Clean and versatile overshirt perfect for everyday layering.",
       image:
         "https://plus.unsplash.com/premium_photo-1672239496593-f51cdc01c0f8?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 33,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Midnight Flannel Shirt",
+      description: "Soft blue fannel shirt designed for casual comfort.",
       image:
         "https://images.unsplash.com/photo-1603339729914-794a45eb27cd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 34,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Crimson Plaid Shirt",
+      description: "Bold red plaid shirt made for standout streetwear style.",
       image:
         "https://images.unsplash.com/photo-1742205966034-394fdab0c975?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 35,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Urban Stripe Tee",
+      description: "Modern striped t-shirt with a trendy oversized fit.",
       image:
         "https://plus.unsplash.com/premium_photo-1705910880679-5b3986ca4b07?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 36,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Eclipse Satin Shirt",
+      description: "Sleek satin-finish shirt for a refined contemporary look.",
       image:
         "https://plus.unsplash.com/premium_photo-1763734785445-39cb4ecc3a45?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 37,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Retro Bloom Shirt",
+      description: "Vintage floral shirt that adds personality to any outfit.",
       image:
         "https://plus.unsplash.com/premium_photo-1672790905751-9f10f3546d60?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 38,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Street Motion Tee",
+      description: "Relaxed oversized tee built for effortless everyday wear.",
       image:
         "https://plus.unsplash.com/premium_photo-1737336522182-3b533a7fa700?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 39,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Sunshine Polo Shirt",
+      description: "Bright polo shirt offering sporty comfort and style.",
       image:
         "https://images.unsplash.com/photo-1619695441757-d36ffcaca05f?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
     },
     {
       id: 40,
-      name: "Sky Formal Shirt",
-      description: "",
+      name: "Onyx Casual Shirt",
+      description: "Timeless black shirt suitable for any casual occasion.",
       image:
         "https://plus.unsplash.com/premium_photo-1757459446676-b8432c532167?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1399",
