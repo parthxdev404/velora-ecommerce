@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import allProducts from "../data/allProduct";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
 
@@ -9,7 +9,7 @@ const ProductPage = () => {
   const { category, id } = useParams();
   const { addToCart } = useCart();
   const products = allProducts[category];
-
+  const navigate = useNavigate();
   const allCategoryProducts = Array.isArray(products)
     ? products
     : Object.values(products || {}).flat();
@@ -31,6 +31,20 @@ const ProductPage = () => {
     : products[currentSubCategory]
         ?.filter((item) => item.id !== product.id)
         .slice(0, 6);
+
+  const handleBuyNow = () => {
+    if ((category === "clothing" || category === "sneakers") && !selectedSize) {
+      alert("Please select a size");
+      return;
+    }
+
+    addToCart({
+      ...product,
+      size: selectedSize,
+    });
+
+    navigate("/cart/checkout");
+  };
 
   return (
     <>
@@ -77,13 +91,28 @@ const ProductPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
               <button
-                onClick={() => addToCart(product)}
+                onClick={() => {
+                  if (
+                    (category === "clothing" || category === "sneakers") &&
+                    !selectedSize
+                  ) {
+                    alert("Please select a size");
+                    return;
+                  }
+                  addToCart({
+                    ...product,
+                    size: selectedSize,
+                  });
+                }}
                 className="px-6 py-3 bg-black cursor-pointer text-white"
               >
                 Add To Cart
               </button>
 
-              <button className="px-6 py-3 bg-black cursor-pointer text-white">
+              <button
+                onClick={handleBuyNow}
+                className="px-6 py-3 bg-black cursor-pointer text-white"
+              >
                 Buy Now
               </button>
             </div>
