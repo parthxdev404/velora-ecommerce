@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import api from '../services/api'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let newErrors = {};
@@ -37,9 +38,26 @@ const SignUp = () => {
     setError(newErrors);
 
     if (Object.keys(newErrors).length > 0) return;
-    localStorage.setItem("isLoggedIn", "true");
+    try {
+        await fetch("http://localhost:4000/api/auth/register", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    username: formData.username,
+    email: formData.email,
+    password: formData.password,
+  }),
+});
 
-    navigate("/");
+        navigate('/login')
+    } catch (error) {
+      console.log("Full error " ,error);
+      console.log("Message" , error.message);
+      
+      alert(error.response?.data?.message || "Registration Failed")
+    }
   };
 
   return (

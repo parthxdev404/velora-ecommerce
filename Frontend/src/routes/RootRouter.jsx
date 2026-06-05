@@ -47,15 +47,16 @@ const RootRouter = () => {
               </>
             }
           />
-          <Route path="/clothing" element={<Clothing />} />
-          <Route path="/clothing/:section" element={<SectionPage />} />
-          <Route path="/sounds" element={<Sounds />} />
-          <Route path="/accessories" element={<Accessories />} />
-          <Route path="/sneakers" element={<Sneakers />} />
-          <Route path="/product/:category/:id" element={<ProductPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/cart/checkout" element={<CheckOut />} />
-          <Route path="/order-success" element={<OrderSuccess />} />
+         
+          <Route path="/clothing" element={ <ProtectedRoutes><Clothing /></ProtectedRoutes>} />
+          <Route path="/clothing/:section" element={<ProtectedRoutes><SectionPage /></ProtectedRoutes>} />
+          <Route path="/sounds" element={<ProtectedRoutes><Sounds /></ProtectedRoutes>} />
+          <Route path="/accessories" element={<ProtectedRoutes><Accessories /></ProtectedRoutes>} />
+          <Route path="/sneakers" element={<ProtectedRoutes><Sneakers /></ProtectedRoutes>} />
+          <Route path="/product/:category/:id" element={<ProtectedRoutes><ProductPage /></ProtectedRoutes>} />
+          <Route path="/cart" element={<ProtectedRoutes><CartPage /></ProtectedRoutes>} />
+          <Route path="/cart/checkout" element={<ProtectedRoutes><CheckOut /></ProtectedRoutes>} />
+          <Route path="/order-success" element={<ProtectedRoutes><OrderSuccess /></ProtectedRoutes>} />
         </Routes>
       </BrowserRouter>
     </>

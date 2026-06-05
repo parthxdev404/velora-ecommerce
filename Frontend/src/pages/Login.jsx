@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import api from '../services/api'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,21 +12,20 @@ const Login = () => {
     e.preventDefault();
   };
 
-  const handleLogin = () => {
-    if (email.trim() === "") {
-      setError("Invalid Email");
-      return;
-    }
-    setError("");
+  const handleLogin = async ()  => {
+      try {
+        const response = await api.post("/auth/login" , {
+          email,
+          password
+        });
 
-    if (password.length <= 8) {
-      setPasswordError("Password must contains at least 8 characters");
-      return;
-    }
-    setPasswordError("");
-    localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("token" , response.data.token);
+        localStorage.setItem("isLoggedIn" , "true" );
+        navigate('/')
 
-    navigate("/");
+      } catch (error) {
+        setError(error.response?.data?.message || "Login Failed")
+      }
   };
 
   return (
