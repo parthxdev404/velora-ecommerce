@@ -4,13 +4,14 @@ export const addToCart = async (req, res) => {
   try {
     const userId = req.user.id;
     const { productId, quantity = 1 } = req.body;
+    console.log("PRODUCT ID:", productId);
 
     let cart = await Cart.findOne({ user: userId });
 
     if (!cart) {
       cart = await Cart.create({
         user: userId,
-        item: [{ product: productId, quantity }],
+        items: [{ product: productId, quantity }],
       });
     } else {
       const itemIndex = cart.items.findIndex(
@@ -23,8 +24,10 @@ export const addToCart = async (req, res) => {
         cart.items.push({ product: productId, quantity });
       }
     }
-
+    console.log("cart before", cart);
     await cart.save();
+    console.log("cart after", cart);
+    console.log("BODY:", req.body);
 
     res.status(200).json({
       success: true,
@@ -43,6 +46,8 @@ export const getCart = async (req, res) => {
     const cart = await Cart.findOne({
       user: req.user.id,
     }).populate("items.product");
+
+    console.log("foundcart : " , cart)
 
     if (!cart) {
       return res.status(200).json({
