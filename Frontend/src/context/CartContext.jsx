@@ -162,29 +162,34 @@ const decreaseQuantity = async (productId) => {
   }
 };
 
-  const removeFromCart = async (productId) => {
-    try {
-      const token = localStorage.getItem("token");
+ const removeFromCart = async (productId) => {
+  try {
+    const token = localStorage.getItem("token");
 
-      const response = await fetch(
-        `${`${import.meta.env.VITE_API_URL}/api/cart/update`}/api/cart/remove/${productId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+    setCart((prevCart) =>
+      prevCart.filter((item) => item.product._id !== productId)
+    );
+
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/cart/remove/${productId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
-
-      const data = await response.json();
-
-      if (data.success) {
-        fetchCart();
       }
-    } catch (error) {
-      console.log(error);
+    );
+
+    const data = await response.json();
+
+    if (!data.success) {
+      fetchCart();
     }
-  };
+  } catch (error) {
+    console.log(error);
+    fetchCart();  
+  }
+};
 
   const clearCart = async () => {
     try {
