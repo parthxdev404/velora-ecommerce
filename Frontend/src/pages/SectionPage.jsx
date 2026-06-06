@@ -11,13 +11,10 @@ const SectionPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/api/products?category=clothing&subCategory=${section}`
+          `${import.meta.env.VITE_API_URL}/api/products?category=clothing&subCategory=${section}`
         );
 
         const data = await response.json();
-
-        console.log("SECTION DATA:", data); // debug
-
         setProducts(data.products || []);
       } catch (error) {
         console.log(error);
