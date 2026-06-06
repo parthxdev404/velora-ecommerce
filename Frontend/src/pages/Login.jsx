@@ -12,21 +12,49 @@ const Login = () => {
     e.preventDefault();
   };
 
-  const handleLogin = async ()  => {
-      try {
-        const response = await api.post("/auth/login" , {
+  const handleLogin = async () => {
+  try {
+    if (email.trim() === "") {
+      setError("Invalid Email");
+      return;
+    }
+
+    setError("");
+
+    if (password.length < 8) {
+      setPasswordError("Password must contain at least 8 characters");
+      return;
+    }
+
+    setPasswordError("");
+
+    const response = await fetch(
+      "http://localhost:4000/api/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           email,
-          password
-        });
-
-        localStorage.setItem("token" , response.data.token);
-        localStorage.setItem("isLoggedIn" , "true" );
-        navigate('/')
-
-      } catch (error) {
-        setError(error.response?.data?.message || "Login Failed")
+          password,
+        }),
       }
-  };
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    localStorage.setItem("token", data.token);
+
+    navigate("/");
+  } catch (error) {
+    alert(error.message);
+  }
+};
 
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between bg-white min-h-screen overflow-hidden">

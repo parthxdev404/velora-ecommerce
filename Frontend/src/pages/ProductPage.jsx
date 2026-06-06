@@ -1,38 +1,70 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
-import allProducts from "../data/allProduct";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
 
 const ProductPage = () => {
+  const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+
   const { category, id } = useParams();
   const { addToCart } = useCart();
-  const products = allProducts[category];
   const navigate = useNavigate();
-  const allCategoryProducts = Array.isArray(products)
-    ? products
-    : Object.values(products || {}).flat();
-
-  const product = allCategoryProducts.find((items) => items.id === Number(id));
 
   const [selectedSize, setSelectedSize] = useState("");
-  const [quantity, setQuantity] = useState(1);
 
-  // Related Products Logic
-  const currentSubCategory =
-    !Array.isArray(products) &&
-    Object.keys(products).find((key) =>
-      products[key].some((items) => items.id === product.id),
-    );
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/api/products/${id}`,
+        );
 
-  const relatedProducts = Array.isArray(products)
-    ? products.filter((item) => item.id !== product.id).slice(0, 6)
-    : products[currentSubCategory]
-        ?.filter((item) => item.id !== product.id)
-        .slice(0, 6);
+        const data = await response.json();
+        setProduct(data.product);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  const handleBuyNow = () => {
+    fetchProduct();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchRelated = async () => {
+      try {
+        if (!product) return;
+        let url = `http://localhost:4000/api/products?category=${product.category}`;
+
+        if (product.subCategory) {
+          url += `&subCategory=${product.subCategory}`;
+        }
+
+        const response = await fetch(url);
+
+        const data = await response.json();
+
+        const filtered = (data.products || [])
+          .filter((p) => p._id !== product._id)
+          .slice(0, 6);
+
+        setRelatedProducts(filtered);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchRelated();
+  }, [product]);
+
+  if (!product) {
+    return <h1 className="text-center mt-10">Loading...</h1>;
+  }
+
+  const getImage = (p) => p.image || p.images?.[0] || p.imageUrl || "";
+
+  const handleAddToCart = () => {
     if ((category === "clothing" || category === "sneakers") && !selectedSize) {
       alert("Please select a size");
       return;
@@ -42,104 +74,85 @@ const ProductPage = () => {
       ...product,
       size: selectedSize,
     });
+  };
 
+  const handleBuyNow = () => {
+    handleAddToCart();
     navigate("/cart/checkout");
   };
 
   return (
     <>
-      <div className="flex justify-center mt-10 px-4">
-        <div className="flex flex-col lg:flex-row justify-around gap-8 max-w-7xl w-full">
-          <div className="lg:w-1/2">
-            <img
-              className="w-full h-[450px] sm:h-[600px] lg:h-[700px] object-cover"
-              src={product.image}
-              alt={product.name}
-            />
-          </div>
+      <div className="flex flex-col lg:flex-row gap-10 p-6 max-w-7xl mx-auto">
+        <img
+          src={getImage(product)}
+          className="lg:w-1/2 w-full h-[500px] object-cover"
+          alt={product.name}
+        />
 
-          <div className="lg:w-1/2">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl">{product.name}</h1>
+        <div className="lg:w-1/2">
+          <h1 className="text-4xl font-bold">{product.name}</h1>
 
-            <p className="whitespace-pre-line leading-7 text-base sm:text-lg lg:text-xl mt-4">
-              {product.description}
-            </p>
+          <p className="mt-4">{product.description}</p>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl mt-10 font-semibold">
-              ₹{product.price}
-            </h1>
+          <h2 className="text-3xl mt-6">₹{product.price}</h2>
 
-            {(category === "clothing" || category === "sneakers") && (
-              <div>
-                <h3 className="text-lg sm:text-xl mt-4">Select Size</h3>
+          {(category === "clothing" || category === "sneakers") && (
+            <div className="mt-6">
+              <h3>Select Size</h3>
 
-                <div className="flex flex-wrap gap-3 sm:gap-5 mt-2">
-                  {["S", "M", "L", "XL"].map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`border-2 cursor-pointer text-lg sm:text-xl px-4 py-2 ${
-                        selectedSize === size ? "bg-black text-white" : ""
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
+              <div className="flex gap-3 mt-2">
+                {["S", "M", "L", "XL"].map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`border px-4 py-2 ${
+                      selectedSize === size ? "bg-black text-white" : ""
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
               </div>
-            )}
-
-            <div className="flex flex-col sm:flex-row gap-4 mt-10">
-              <button
-                onClick={() => {
-                  if (
-                    (category === "clothing" || category === "sneakers") &&
-                    !selectedSize
-                  ) {
-                    alert("Please select a size");
-                    return;
-                  }
-                  addToCart({
-                    ...product,
-                    size: selectedSize,
-                  });
-                }}
-                className="px-6 py-3 bg-black cursor-pointer text-white"
-              >
-                Add To Cart
-              </button>
-
-              <button
-                onClick={handleBuyNow}
-                className="px-6 py-3 bg-black cursor-pointer text-white"
-              >
-                Buy Now
-              </button>
             </div>
+          )}
+
+          <div className="flex gap-4 mt-8">
+            <button
+              onClick={handleAddToCart}
+              className="bg-black text-white px-6 py-3"
+            >
+              Add To Cart
+            </button>
+
+            <button
+              onClick={handleBuyNow}
+              className="bg-black text-white px-6 py-3"
+            >
+              Buy Now
+            </button>
           </div>
         </div>
       </div>
-      <div className="mt-24 px-4">
-        <h1 className="text-center text-3xl sm:text-4xl">Related Products</h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-          {relatedProducts?.map((item) => {
-            return (
-              <Link key={item.id} to={`/product/${category}/${item.id}`}>
-                <img
-                  className="w-full h-[400px] sm:h-[500px] lg:h-[700px] object-cover"
-                  src={item.image}
-                  alt={item.name}
-                />
+      <div className="mt-20 px-6">
+        <h2 className="text-3xl text-center">Related Products</h2>
 
-                <h2 className="text-lg sm:text-xl p-2">{item.name}</h2>
-
-                <p className="text-lg sm:text-xl px-2">₹{item.price}</p>
-              </Link>
-            );
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+          {relatedProducts.map((item) => (
+            <Link key={item._id} to={`/product/${category}/${item._id}`}>
+              <img
+                src={getImage(item)}
+                className="h-[350px] w-full object-cover"
+                alt={item.name}
+              />
+              <p className="p-2">{item.name}</p>
+              <p className="px-2">₹{item.price}</p>
+            </Link>
+          ))}
         </div>
       </div>
+
       <Footer />
     </>
   );

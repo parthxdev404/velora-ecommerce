@@ -38,27 +38,37 @@ const SignUp = () => {
     setError(newErrors);
 
     if (Object.keys(newErrors).length > 0) return;
-    try {
-        await fetch("http://localhost:4000/api/auth/register", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    username: formData.username,
-    email: formData.email,
-    password: formData.password,
-  }),
-});
-
-        navigate('/login')
-    } catch (error) {
-      console.log("Full error " ,error);
-      console.log("Message" , error.message);
-      
-      alert(error.response?.data?.message || "Registration Failed")
+try {
+  const response = await fetch(
+    "http://localhost:4000/api/auth/register",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      }),
     }
-  };
+  );
+
+  const data = await response.json();
+
+  console.log("Status:", response.status);
+  console.log("Response:", data);
+
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+
+  alert("Registration Successful");
+  navigate("/login");
+} catch (error) {
+  console.log("ERROR:", error);
+  alert(error.message);
+}}
 
   return (
     <div className="flex flex-col lg:flex-row-reverse items-center justify-between gap-4 min-h-screen overflow-hidden">

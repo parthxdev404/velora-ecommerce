@@ -1,9 +1,34 @@
 import React from "react";
-import accessoryData from "../data/accessoryData";
+import { useState , useEffect } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const Accessories = () => {
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+      
+      const fetchProduts = async ()=>{
+          try {
+            const response = await fetch(
+              "http://localhost:4000/api/products?category=accessories"
+            )
+
+            const data = await response.json();
+            setProducts(data.products);
+
+          } catch (error) {
+            console.log(error)
+          }
+      }
+
+      fetchProduts()
+
+    }, [])
+    
+
+
   return (
     <>
       <div>
@@ -12,11 +37,11 @@ const Accessories = () => {
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 p-2 mt-4">
-          {accessoryData.map((accessory) => {
+          {products.map((accessory) => {
             return (
               <Link
-                key={accessory.id}
-                to={`/product/accessories/${accessory.id}`}
+                key={accessory._id}
+                to={`/product/accessories/${accessory._id}`}
               >
                 <div>
                   <img

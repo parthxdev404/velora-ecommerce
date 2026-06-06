@@ -19,7 +19,7 @@ import CheckOut from "../pages/CheckOut";
 import OrderSuccess from "../pages/OrderSuccess";
 
 const RootRouter = () => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const token = localStorage.getItem("token");
 
   return (
     <>
@@ -27,24 +27,24 @@ const RootRouter = () => {
         <Routes>
           <Route
             path="/login"
-            element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+            element={token ? <Navigate to="/" /> : <Login />}
           />
           <Route
             path="/register"
-            element={isLoggedIn ? <Navigate to="/" /> : <SignUp />}
+            element={token ? <Navigate to="/" /> : <SignUp />}
           />
           <Route
             path="/"
             element={
-              <>
                 <ProtectedRoutes>
+                 <>
                   <Home />,
                   <About />,
                   <Essentials />,
                   <Collection />,
                   <Footer />
+                 </>
                 </ProtectedRoutes>
-              </>
             }
           />
          

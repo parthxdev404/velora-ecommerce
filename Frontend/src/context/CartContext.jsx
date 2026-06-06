@@ -1,86 +1,206 @@
-import {
-  useContext,
-  createContext,
-  useState,
-  useEffect,
-  useEffectEvent,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem("cart");
+  const [cart, setCart] = useState([]);
 
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+  const fetchCart = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch("http://localhost:4000/api/cart", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+
+      console.log("FETCH CART RESPONSE:", data);
+
+      if (data.success) {
+        setCart(data.cart?.items || []);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    fetchCart();
+  }, []);
 
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existingProduct = prevCart.find(
-        (item) => item.id === product.id && item.size === product.size,
+  const addToCart = async (product) => {
+    console.log("PRODUCT RECEIVED:", product);
+    console.log("PRODUCT ID:", product?._id);
+    try {
+      console.log("ADD TO CART PRODUCT:", product);
+
+      const token = localStorage.getItem("token");
+
+      const response = await fetch("http://localhost:4000/api/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId: product._id,
+          quantity: 1,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+
+      if (data.success) {
+        fetchCart();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateQuantity = async (productId, quantity) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch("http://localhost:4000/api/cart/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId,
+          quantity,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        fetchCart();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const increaseQuantity = async (productId) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const item = cart.find((item) => item.product._id === productId);
+
+      const response = await fetch("http://localhost:4000/api/cart/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId,
+          quantity: item.quantity + 1,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        fetchCart();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const decreaseQuantity = async (productId) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const item = cart.find((item) => item.product._id === productId);
+
+      const response = await fetch("http://localhost:4000/api/cart/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId,
+          quantity: item.quantity - 1,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        fetchCart();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFromCart = async (productId) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(
+        `http://localhost:4000/api/cart/remove/${productId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
 
-      if (existingProduct) {
-        return prevCart.map((item) =>
-          item.id === product.id && item.size === product.size
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
-        );
+      const data = await response.json();
+
+      if (data.success) {
+        fetchCart();
       }
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const increaseQuantity = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((items) =>
-        items.id === id ? { ...items, quantity: items.quantity + 1 } : items,
-      ),
-    );
-  };
+  const clearCart = async () => {
+    try {
+      const token = localStorage.getItem("token");
 
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
-  };
+      const response = await fetch("http://localhost:4000/api/cart/clear", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  const decreaseQuantity = (id) => {
-    setCart((prevCart) =>
-      prevCart.flatMap((item) => {
-        if (item.id !== id) return item;
-        if (item.quantity === 1) {
-          return [];
-        }
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
-      }),
-    );
-  };
+      const data = await response.json();
 
-  const clearCart = () => {
-    setCart([]);
+      if (data.message) {
+        fetchCart();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
 
   return (
     <CartContext.Provider
       value={{
         cart,
-        setCart,
         addToCart,
+        fetchCart,
         increaseQuantity,
         decreaseQuantity,
-        clearCart,
+        updateQuantity,
         removeFromCart,
+        clearCart,
       }}
     >
       {children}

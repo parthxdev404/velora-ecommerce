@@ -1,12 +1,32 @@
-import React from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
-import { clothingData } from "../data/ClothingData";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import CategoryNav from "../layouts/CategoryNav";
 
 const SectionPage = () => {
   const { section } = useParams();
-  const products = clothingData[section];
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/api/products?category=clothing&subCategory=${section}`
+        );
+
+        const data = await response.json();
+
+        console.log("SECTION DATA:", data); // debug
+
+        setProducts(data.products || []);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProduct();
+  }, [section]);
+
 
   return (
     <>
@@ -19,23 +39,29 @@ const SectionPage = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-5 p-4">
-          {products.map((product) => {
-            return (
-              <Link key={product.id} to={`/product/clothing/${product.id}`}>
-                <div>
-                  <img
-                    className="w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover"
-                    src={product.image}
-                    alt={product.name}
-                  />
-                  <h2 className="text-lg sm:text-xl p-2">{product.name}</h2>
-                  <p className="text-lg sm:text-xl px-2">₹{product.price}</p>
-                </div>
-              </Link>
-            );
-          })}
+          {products.map((product) => (
+            <Link
+              key={product._id}
+              to={`/product/clothing/${product._id}`}
+            >
+              <div>
+                <img
+                  className="w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover"
+                  src={product.image}
+                  alt={product.name}
+                />
+                <h2 className="text-lg sm:text-xl p-2">
+                  {product.name}
+                </h2>
+                <p className="text-lg sm:text-xl px-2">
+                  ₹{product.price}
+                </p>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
+
       <Footer />
     </>
   );
