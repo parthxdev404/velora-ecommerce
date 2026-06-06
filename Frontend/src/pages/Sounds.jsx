@@ -11,7 +11,7 @@ const Sounds = () => {
     const fetchProducts = async () =>{
       try {
         const response = await fetch(
-          "http://localhost:4000/api/products?category=sounds"
+          `${import.meta.env.VITE_API_URL}/api/products?category=sounds`
         )
 
         const data = await response.json()
