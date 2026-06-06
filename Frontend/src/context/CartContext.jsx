@@ -89,33 +89,42 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const increaseQuantity = async (productId) => {
-    try {
-      const token = localStorage.getItem("token");
+const increaseQuantity = async (productId) => {
+  try {
+    const token = localStorage.getItem("token");
 
-      const item = cart.find((item) => item.product._id === productId);
+    // 1. find item
+    const item = cart.find(
+      (item) => item.product._id === productId
+    );
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/update`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          productId,
-          quantity: item.quantity + 1,
-        }),
-      });
+    if (!item) return;
 
-      const data = await response.json();
+    const newQuantity = item.quantity + 1;
 
-      if (data.success) {
-        fetchCart();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.product._id === productId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
+
+    await fetch(`${import.meta.env.VITE_API_URL}/api/cart/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        productId,
+        quantity: newQuantity,
+      }),
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const decreaseQuantity = async (productId) => {
     try {
