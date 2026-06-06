@@ -35,7 +35,7 @@ const ProductPage = () => {
     const fetchRelated = async () => {
       try {
         if (!product) return;
-        let url = `http://localhost:4000/api/products?category=${product.category}`;
+        let url = `${import.meta.env.VITE_API_URL}/api/products?category=${product.category}`;
 
         if (product.subCategory) {
           url += `&subCategory=${product.subCategory}`;
