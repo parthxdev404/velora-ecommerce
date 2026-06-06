@@ -1,31 +1,26 @@
-import React , {useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const Sneakers = () => {
-
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchProducts = async () =>{
+    const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:4000/api/products?category=sneakers"
+          `${import.meta.env.VITE_API_URL}/api/products?category=sneakers`,
         );
 
         const data = await response.json();
-        setProducts(data.products)
-
+        setProducts(data.products);
       } catch (error) {
-          console.log(error);
-          
+        console.log(error);
       }
     };
 
-    fetchProducts()
-
-  }, [])
-  
+    fetchProducts();
+  }, []);
 
   return (
     <>
