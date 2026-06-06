@@ -9,8 +9,15 @@ import orderRoutes from "./routes/order.routes.js"
 
 const app = express();
 app.use(express.json());
-app.use(cors({origin: process.env.CLIENT_URL,
-    credentials: true,}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://velora-ecommerce-smoky.vercel.app"
+    ],
+    credentials: true,
+  })
+);
 
 app.use("/api/auth", userRoutes);
 app.use("/api/products", productRoutes);
